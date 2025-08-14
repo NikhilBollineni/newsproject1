@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Industry News</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Industry News</h1>
+    <select id="industrySelect">
+      <option value="" disabled selected>Select Industry</option>
+    </select>
+    <ul id="newsList"></ul>
+  </div>
+  <script>
+    async function loadIndustries() {
+      const res = await fetch('/industries');
+      const industries = await res.json();
+      const select = document.getElementById('industrySelect');
+      industries.forEach(ind => {
+        const option = document.createElement('option');
+        option.value = ind;
+        option.textContent = ind.charAt(0).toUpperCase() + ind.slice(1);
+        select.appendChild(option);
+      });
+    }
+
+    async function loadNews(industry) {
+      const res = await fetch(`/news/${industry}`);
+      const news = await res.json();
+      const list = document.getElementById('newsList');
+      list.innerHTML = '';
+      news.forEach(item => {
+        const li = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = item.url;
+        link.textContent = item.title;
+        link.target = '_blank';
+        li.appendChild(link);
+        list.appendChild(li);
+      });
+    }
+
+    document.getElementById('industrySelect').addEventListener('change', e => {
+      loadNews(e.target.value);
+    });
+
+    loadIndustries();
+  </script>
+</body>
+</html>

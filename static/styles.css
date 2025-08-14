@@ -1,0 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+}
+
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#newsList {
+  list-style: none;
+  padding-left: 0;
+}
+
+#newsList li {
+  margin-bottom: 0.5rem;
+}
+
+#newsList a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+#newsList a:hover {
+  text-decoration: underline;
+}
